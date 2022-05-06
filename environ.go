@@ -7,10 +7,10 @@ import (
 var (
 	// ProjectID - Google Cloud Platform Project ID
 	ProjectID = getProjectID()
-	// ServiceName - Google App Engine service name
-	ServiceName = os.Getenv(EnvKeyServiceName)
-	// ServiceVersion - Google App Engine service version
-	ServiceVersion = os.Getenv(EnvKeyServiceVersion)
+	// GAEServiceName - Google App Engine service name
+	GAEServiceName = os.Getenv(EnvKeyGAEServiceName)
+	// GAEServiceVersion - Google App Engine service version
+	GAEServiceVersion = os.Getenv(EnvKeyGAEServiceVersion)
 )
 
 func getProjectID() string {
@@ -30,6 +30,6 @@ func getProjectID() string {
 // Reload - Reload environment variables.
 func Reload() {
 	ProjectID = getProjectID()
-	ServiceName = os.Getenv(EnvKeyServiceName)
-	ServiceVersion = os.Getenv(EnvKeyServiceVersion)
+	GAEServiceName = os.Getenv(EnvKeyGAEServiceName)
+	GAEServiceVersion = os.Getenv(EnvKeyGAEServiceVersion)
 }

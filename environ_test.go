@@ -6,15 +6,15 @@ import (
 )
 
 const (
-	testProject = "test-project"
-	testService = "test-service"
-	testVersion = "test-version"
+	testProject    = "test-project"
+	testGAEService = "test-gae-service"
+	testGAEVersion = "test-gae-version"
 )
 
 func init() {
 	os.Setenv(EnvKeyGoogleCloudProject, testProject)
-	os.Setenv(EnvKeyServiceName, testService)
-	os.Setenv(EnvKeyServiceVersion, testVersion)
+	os.Setenv(EnvKeyGAEServiceName, testGAEService)
+	os.Setenv(EnvKeyGAEServiceVersion, testGAEVersion)
 }
 
 func TestEnviron(t *testing.T) {
@@ -22,10 +22,10 @@ func TestEnviron(t *testing.T) {
 	if ProjectID != testProject {
 		t.Fatalf("unexpected, expected: %s, actual: %#v", testProject, ProjectID)
 	}
-	if ServiceName != testService {
-		t.Fatalf("unexpected, expected: %s, actual: %#v", testService, ServiceName)
+	if GAEServiceName != testGAEService {
+		t.Fatalf("unexpected, expected: %s, actual: %#v", testGAEService, GAEServiceName)
 	}
-	if ServiceVersion != testVersion {
-		t.Fatalf("unexpected, expected: %s, actual: %#v", testVersion, ServiceVersion)
+	if GAEServiceVersion != testGAEVersion {
+		t.Fatalf("unexpected, expected: %s, actual: %#v", testGAEVersion, GAEServiceVersion)
 	}
 }
