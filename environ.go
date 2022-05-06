@@ -11,6 +11,10 @@ var (
 	GAEServiceName = os.Getenv(EnvKeyGAEServiceName)
 	// GAEServiceVersion - Google App Engine service version
 	GAEServiceVersion = os.Getenv(EnvKeyGAEServiceVersion)
+	// RUNServiceName - Google Cloud Run service name
+	RUNServiceName = os.Getenv(EnvKeyRUNServiceName)
+	// RUNServiceRevision - Google Cloud Run service revision
+	RUNServiceRevision = os.Getenv(EnvKeyRUNServiceRevision)
 )
 
 func getProjectID() string {
@@ -32,4 +36,6 @@ func Reload() {
 	ProjectID = getProjectID()
 	GAEServiceName = os.Getenv(EnvKeyGAEServiceName)
 	GAEServiceVersion = os.Getenv(EnvKeyGAEServiceVersion)
+	RUNServiceName = os.Getenv(EnvKeyRUNServiceName)
+	RUNServiceRevision = os.Getenv(EnvKeyRUNServiceRevision)
 }
