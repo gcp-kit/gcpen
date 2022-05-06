@@ -7,6 +7,15 @@ import (
 var (
 	// ProjectID - Google Cloud Platform Project ID
 	ProjectID = getProjectID()
+
+	// ServiceName - Google App Engine service name
+	// Deprecated
+	ServiceName = os.Getenv(EnvKeyServiceName)
+
+	// ServiceVersion - Google App Engine service version
+	// Deprecated
+	ServiceVersion = os.Getenv(EnvKeyServiceVersion)
+
 	// GAEServiceName - Google App Engine service name
 	GAEServiceName = os.Getenv(EnvKeyGAEServiceName)
 	// GAEServiceVersion - Google App Engine service version
@@ -34,6 +43,14 @@ func getProjectID() string {
 // Reload - Reload environment variables.
 func Reload() {
 	ProjectID = getProjectID()
+
+	// Deprecated
+	// ServiceName - Deprecated
+	ServiceName = os.Getenv(EnvKeyServiceName)
+	// Deprecated
+	// ServiceVersion - Deprecated
+	ServiceVersion = os.Getenv(EnvKeyServiceVersion)
+
 	GAEServiceName = os.Getenv(EnvKeyGAEServiceName)
 	GAEServiceVersion = os.Getenv(EnvKeyGAEServiceVersion)
 	RUNServiceName = os.Getenv(EnvKeyRUNServiceName)

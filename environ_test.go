@@ -26,6 +26,16 @@ func TestEnviron(t *testing.T) {
 	if ProjectID != testProject {
 		t.Fatalf("unexpected, expected: %s, actual: %#v", testProject, ProjectID)
 	}
+
+	// Deprecated
+	if ServiceName != testGAEService {
+		t.Fatalf("unexpected, expected: %s, actual: %#v", testGAEService, ServiceName)
+	}
+	// Deprecated
+	if ServiceVersion != testGAEVersion {
+		t.Fatalf("unexpected, expected: %s, actual: %#v", testGAEVersion, ServiceVersion)
+	}
+
 	if GAEServiceName != testGAEService {
 		t.Fatalf("unexpected, expected: %s, actual: %#v", testGAEService, GAEServiceName)
 	}
