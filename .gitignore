@@ -5,7 +5,7 @@ out
 gen
 
 # VSCode project files
-.vsCode
+.vscode
 
 # Binaries for programs and plugins
 *.exe
