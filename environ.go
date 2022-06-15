@@ -1,12 +1,16 @@
 package gcpen
 
 import (
+	"context"
 	"os"
+
+	"google.golang.org/api/cloudresourcemanager/v1"
 )
 
 var (
 	// ProjectID - Google Cloud Platform Project ID
-	ProjectID = getProjectID()
+	ProjectID     = getProjectID()
+	projectNumber int64
 
 	// ServiceName - Google App Engine service name
 	// Deprecated
@@ -40,19 +44,40 @@ func getProjectID() string {
 	return ""
 }
 
-// Reload - Reload environment variables.
+// Reload - reload environment variables.
 func Reload() {
 	ProjectID = getProjectID()
 
+	// ServiceName - will be deleted in a major version upgrade
 	// Deprecated
-	// ServiceName - Deprecated
 	ServiceName = os.Getenv(EnvKeyServiceName)
+	// ServiceVersion - will be deleted in a major version upgrade
 	// Deprecated
-	// ServiceVersion - Deprecated
 	ServiceVersion = os.Getenv(EnvKeyServiceVersion)
 
 	GAEServiceName = os.Getenv(EnvKeyGAEServiceName)
 	GAEServiceVersion = os.Getenv(EnvKeyGAEServiceVersion)
 	RUNServiceName = os.Getenv(EnvKeyRUNServiceName)
 	RUNServiceRevision = os.Getenv(EnvKeyRUNServiceRevision)
+}
+
+// GetProjectNumber - get project number
+func GetProjectNumber(ctx context.Context, forceRefresh ...bool) (int64, error) {
+	if projectNumber != 0 && !(len(forceRefresh) > 0 && forceRefresh[0]) {
+		return projectNumber, nil
+	}
+
+	service, err := cloudresourcemanager.NewService(ctx)
+	if err != nil {
+		return 0, err
+	}
+
+	project, err := service.Projects.Get(getProjectID()).Context(ctx).Do()
+	if err != nil {
+		return 0, err
+	}
+
+	projectNumber = project.ProjectNumber
+
+	return projectNumber, nil
 }
