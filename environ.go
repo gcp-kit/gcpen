@@ -44,7 +44,7 @@ func getProjectID() string {
 	return ""
 }
 
-// Reload - Reload environment variables.
+// Reload - reload environment variables.
 func Reload() {
 	ProjectID = getProjectID()
 
